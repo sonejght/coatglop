@@ -1,7 +1,5 @@
 #pragma once
 
-#include <glad/gl.h>
-
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
 # define      SON8OPENGL_VERSION_1_1
@@ -15,8 +13,9 @@
 #include            "opengl-1_5.hxx"
 #include            "opengl-2_1.hxx"
 #include            "opengl-3_3.hxx"
-#include            "opengl-4_3.hxx"
 #  endif       // SON8OPENGL_DEFINED
+
+#include "opengl.hxx"
 
 namespace son8::opengl
 {

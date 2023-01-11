@@ -1,3 +1,4 @@
+/* Ⓒ 2023 - Sonejght */
 #pragma once
 
 #include <glad/gl.h>

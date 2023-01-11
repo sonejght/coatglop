@@ -1,3 +1,4 @@
+/* Ⓒ 2023 - Sonejght */
 #pragma once
 
 # ifndef          SON8OPENGL_DEFINED

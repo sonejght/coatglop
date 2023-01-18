@@ -19,7 +19,119 @@
 #include            "opengl-4_3.hxx"
 #  endif       // SON8OPENGL_DEFINED
 
-namespace son8::opengl
+namespace son8::opengl::types
 {
 
+}
+
+namespace son8::opengl::enums
+{
+    enum class Bool : unsigned
+    {
+        False = GL_FALSE,
+        True = GL_TRUE,
+    };
+
+    enum class Error : GLenum
+    {
+        Enum = GL_INVALID_ENUM,
+        Value = GL_INVALID_VALUE,
+        Operation = GL_INVALID_OPERATION,
+        Memory = GL_OUT_OF_MEMORY,
+#ifndef SON8OPENGL_PROFILE_CORE
+        Overflow = GL_STACK_OVERFLOW,
+        Underflow = GL_STACK_UNDERFLOW,
+#endif
+    };
+
+    enum class Clear : GLbitfield
+    {
+        Colorbit = GL_COLOR_BUFFER_BIT,
+        Depthbit = GL_DEPTH_BUFFER_BIT,
+        Stencilbit = GL_STENCIL_BUFFER_BIT,
+#ifndef SON8OPENGL_PROFILE_CORE
+        AccumBit = GL_ACCUM_BUFFER_BIT,
+        All = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_ACCUM_BUFFER_BIT,
+#else
+        All = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT,
+#endif
+    };
+
+    enum class Draw : GLenum
+    {
+        Default = GL_TRIANGLES,
+        Strip = GL_TRIANGLE_STRIP,
+        Fan = GL_TRIANGLE_FAN,
+        Lines = GL_LINES,
+        StripLine = GL_LINE_STRIP,
+        Loop = GL_LINE_LOOP,
+        Points = GL_POINTS,
+#ifdef SON8OPENGL_VERSION_3_3
+        Adjacency = GL_TRIANGLES_ADJACENCY,
+        AdjacencyStrip = GL_TRIANGLE_STRIP_ADJACENCY,
+        AdjacencyLines = GL_LINES_ADJACENCY,
+        AdjacencyStripLine = GL_LINE_STRIP_ADJACENCY,
+#endif
+#ifdef SON8OPENGL_VERSION_4_3
+        Patches = GL_PATCHES,
+#endif
+#ifndef SON8OPENGL_PROFILE_CORE
+        Polygon = GL_POLYGON,
+        Quads = GL_QUADS,
+        StripQuad = GL_QUAD_STRIP,
+#endif
+    };
+
+    enum class Capability : GLenum
+    {
+        Depth = GL_DEPTH_TEST,
+        Cull = GL_CULL_FACE,
+#ifndef SON8OPENGL_PROFILE_CORE
+        Normalize = GL_NORMALIZE,
+        PointSmooth = GL_POINT_SMOOTH,
+#endif
+    };
+
+#ifdef SON8OPENGL_VERSION_1_5
+    enum class Buffer : GLenum
+    {
+        Array = GL_ARRAY_BUFFER,
+        Element = GL_ELEMENT_ARRAY_BUFFER,
+    };
+#endif
+
+#ifdef SON8OPENGL_VERSION_2_1
+    enum class Shader : GLenum
+    {
+        Vertex = GL_VERTEX_SHADER,
+        Fragment = GL_FRAGMENT_SHADER,
+#   ifdef SON8OPENGL_VERSION_3_3
+        Geometry = GL_GEOMETRY_SHADER,
+#   endif
+    };
+#endif
+
+#ifndef SON8OPENGL_PROFILE_CORE
+    enum class Array : GLenum
+    {
+        Vertex = GL_VERTEX_ARRAY,
+        Color = GL_COLOR_ARRAY,
+        Normal = GL_NORMAL_ARRAY,
+        Texture = GL_TEXTURE_COORD_ARRAY,
+        Edge = GL_EDGE_FLAG_ARRAY,
+        Index = GL_INDEX_ARRAY,
+    };
+
+    enum class Matrix : GLenum
+    {
+        Projection = GL_PROJECTION,
+        ModelView = GL_MODELVIEW,
+    };
+
+    enum class List : GLenum
+    {
+        Compile = GL_COMPILE,
+        Execute = GL_COMPILE_AND_EXECUTE,
+    };
+#endif
 }

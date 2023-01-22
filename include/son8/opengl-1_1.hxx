@@ -42,5 +42,31 @@ namespace son8::opengl
     inline auto Begin() { glBegin(static_cast< GLenum >(enums::Draw::Default)); }
     inline auto Begin(enums::Draw mode) { glBegin(static_cast< GLenum >(mode)); }
     inline auto End() { glEnd(); }
+
+    inline auto Vertex(types::array2s const &coords) { glVertex2sv(coords.data()); }
+    inline auto Vertex(types::array2i const &coords) { glVertex2iv(coords.data()); }
+    inline auto Vertex(types::array2f const &coords) { glVertex2fv(coords.data()); }
+    inline auto Vertex(types::array2d const &coords) { glVertex2dv(coords.data()); }
+    inline auto Vertex(types::array3s const &coords) { glVertex3sv(coords.data()); }
+    inline auto Vertex(types::array3i const &coords) { glVertex3iv(coords.data()); }
+    inline auto Vertex(types::array3f const &coords) { glVertex3fv(coords.data()); }
+    inline auto Vertex(types::array3d const &coords) { glVertex3dv(coords.data()); }
+    inline auto Vertex(types::array4s const &coords) { glVertex4sv(coords.data()); }
+    inline auto Vertex(types::array4i const &coords) { glVertex4iv(coords.data()); }
+    inline auto Vertex(types::array4f const &coords) { glVertex4fv(coords.data()); }
+    inline auto Vertex(types::array4d const &coords) { glVertex4dv(coords.data()); }
+    inline auto Vertex(GLint x, GLint y) { glVertex2i(x, y); }
+    inline auto Vertex(GLshort x, GLshort y) { glVertex2s(x, y); }
+    inline auto Vertex(GLfloat x, GLfloat y) { glVertex2f(x, y); }
+    inline auto Vertex(GLdouble x, GLdouble y) { glVertex2d(x, y); }
+    inline auto Vertex(GLint x, GLint y, GLint z) { glVertex3i(x, y, z); }
+    inline auto Vertex(GLshort x, GLshort y, GLshort z) { glVertex3s(x, y, z); }
+    inline auto Vertex(GLfloat x, GLfloat y, GLfloat z) { glVertex3f(x, y, z); }
+    inline auto Vertex(GLdouble x, GLdouble y, GLdouble z) { glVertex3d(x, y, z); }
+    inline auto Vertex(GLint x, GLint y, GLint z, GLint w) { glVertex4i(x, y, z, w); }
+    inline auto Vertex(GLshort x, GLshort y, GLshort z, GLshort w) { glVertex4s(x, y, z, w); }
+    inline auto Vertex(GLfloat x, GLfloat y, GLfloat z, GLfloat w) { glVertex4f(x, y, z, w); }
+    inline auto Vertex(GLdouble x, GLdouble y, GLdouble z, GLdouble w) { glVertex4d(x, y, z, w); }
+
 #endif
 }

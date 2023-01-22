@@ -2,6 +2,7 @@
 #pragma once
 
 #include <glad/gl.h>
+#include <array>
 
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
@@ -17,7 +18,20 @@
 
 namespace son8::opengl::types
 {
+    using array2s = std::array< GLshort, 2 >;
+    using array2i = std::array< GLint, 2 >;
+    using array2f = std::array< GLfloat, 2 >;
+    using array2d = std::array< GLdouble, 2 >;
 
+    using array3s = std::array< GLshort, 3 >;
+    using array3i = std::array< GLint, 3 >;
+    using array3f = std::array< GLfloat, 3 >;
+    using array3d = std::array< GLdouble, 3 >;
+
+    using array4s = std::array< GLshort, 4 >;
+    using array4i = std::array< GLint, 4 >;
+    using array4f = std::array< GLfloat, 4 >;
+    using array4d = std::array< GLdouble, 4 >;
 }
 
 namespace son8::opengl::enums

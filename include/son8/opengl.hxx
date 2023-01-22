@@ -34,6 +34,7 @@ namespace son8::opengl::enums
 
     enum class Error : GLenum
     {
+        None = GL_NO_ERROR,
         Enum = GL_INVALID_ENUM,
         Value = GL_INVALID_VALUE,
         Operation = GL_INVALID_OPERATION,

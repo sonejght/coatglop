@@ -68,5 +68,38 @@ namespace son8::opengl
     inline auto Vertex(GLfloat x, GLfloat y, GLfloat z, GLfloat w) { glVertex4f(x, y, z, w); }
     inline auto Vertex(GLdouble x, GLdouble y, GLdouble z, GLdouble w) { glVertex4d(x, y, z, w); }
 
+    inline auto Color(types::array3i const &components) { glColor3iv(components.data()); }
+    inline auto Color(types::array3b const &components) { glColor3bv(components.data()); }
+    inline auto Color(types::array3s const &components) { glColor3sv(components.data()); }
+    inline auto Color(types::array3f const &components) { glColor3fv(components.data()); }
+    inline auto Color(types::array3d const &components) { glColor3dv(components.data()); }
+    inline auto Color(types::array4i const &components) { glColor4iv(components.data()); }
+    inline auto Color(types::array4b const &components) { glColor4bv(components.data()); }
+    inline auto Color(types::array4s const &components) { glColor4sv(components.data()); }
+    inline auto Color(types::array4f const &components) { glColor4fv(components.data()); }
+    inline auto Color(types::array4d const &components) { glColor4dv(components.data()); }
+    inline auto Color(types::array3ui const &components) { glColor3uiv(components.data()); }
+    inline auto Color(types::array3ub const &components) { glColor3ubv(components.data()); }
+    inline auto Color(types::array3us const &components) { glColor3usv(components.data()); }
+    inline auto Color(types::array4ui const &components) { glColor4uiv(components.data()); }
+    inline auto Color(types::array4ub const &components) { glColor4ubv(components.data()); }
+    inline auto Color(types::array4us const &components) { glColor4usv(components.data()); }
+    inline auto Color(GLint r, GLint g, GLint b) { glColor3i(r, g, b); }
+    inline auto Color(GLbyte r, GLbyte g, GLbyte b) { glColor3b(r, g, b); }
+    inline auto Color(GLuint r, GLuint g, GLuint b) { glColor3ui(r, g, b); }
+    inline auto Color(GLshort r, GLshort g, GLshort b) { glColor3s(r, g, b); }
+    inline auto Color(GLfloat r, GLfloat g, GLfloat b) { glColor3f(r, g, b); }
+    inline auto Color(GLubyte r, GLubyte g, GLubyte b) { glColor3ub(r, g, b); }
+    inline auto Color(GLdouble r, GLdouble g, GLdouble b) { glColor3d(r, g, b); }
+    inline auto Color(GLushort r, GLushort g, GLushort b) { glColor3us(r, g, b); }
+    inline auto Color(GLint r, GLint g, GLint b, GLint a) { glColor4i(r, g, b, a); }
+    inline auto Color(GLbyte r, GLbyte g, GLbyte b, GLbyte a) { glColor4b(r, g, b, a); }
+    inline auto Color(GLuint r, GLuint g, GLuint b, GLuint a) { glColor4ui(r, g, b, a); }
+    inline auto Color(GLshort r, GLshort g, GLshort b, GLshort a) { glColor4s(r, g, b, a); }
+    inline auto Color(GLfloat r, GLfloat g, GLfloat b, GLfloat a) { glColor4f(r, g, b, a); }
+    inline auto Color(GLubyte r, GLubyte g, GLubyte b, GLubyte a) { glColor4ub(r, g, b, a); }
+    inline auto Color(GLdouble r, GLdouble g, GLdouble b, GLdouble a) { glColor4d(r, g, b, a); }
+    inline auto Color(GLushort r, GLushort g, GLushort b, GLushort a) { glColor4us(r, g, b, a); }
+
 #endif
 }

@@ -18,20 +18,30 @@
 
 namespace son8::opengl::types
 {
-    using array2s = std::array< GLshort, 2 >;
     using array2i = std::array< GLint, 2 >;
+    using array2s = std::array< GLshort, 2 >;
     using array2f = std::array< GLfloat, 2 >;
     using array2d = std::array< GLdouble, 2 >;
 
-    using array3s = std::array< GLshort, 3 >;
     using array3i = std::array< GLint, 3 >;
+    using array3b = std::array< GLbyte, 3 >;
+    using array3s = std::array< GLshort, 3 >;
     using array3f = std::array< GLfloat, 3 >;
     using array3d = std::array< GLdouble, 3 >;
 
-    using array4s = std::array< GLshort, 4 >;
     using array4i = std::array< GLint, 4 >;
+    using array4b = std::array< GLbyte, 4 >;
+    using array4s = std::array< GLshort, 4 >;
     using array4f = std::array< GLfloat, 4 >;
     using array4d = std::array< GLdouble, 4 >;
+
+    using array3ui = std::array< GLuint, 3 >;
+    using array3ub = std::array< GLubyte, 3 >;
+    using array3us = std::array< GLushort, 3 >;
+
+    using array4ui = std::array< GLuint, 4 >;
+    using array4ub = std::array< GLubyte, 4 >;
+    using array4us = std::array< GLushort, 4 >;
 }
 
 namespace son8::opengl::enums

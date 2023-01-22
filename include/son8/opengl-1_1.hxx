@@ -13,7 +13,7 @@
 namespace son8::opengl
 {
     // Essential specification part
-    auto GetError();
+    enums::Error GetError();
     inline auto Viewport() { glViewport(0, 0, 640, 480); }
     inline auto Viewport(GLsizei width, GLsizei height) { glViewport(0, 0, width, height); }
     inline auto Viewport(GLint x, GLint y, GLsizei width, GLsizei height) { glViewport(x, y, width, height); }

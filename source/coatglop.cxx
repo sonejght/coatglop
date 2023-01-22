@@ -4,10 +4,11 @@
 
 namespace son8::opengl
 {
-    auto GetError()
+    enums::Error GetError()
     {
         auto err = static_cast< enums::Error >(glGetError());
         assert(err == enums::Error::None);
         return err;
     }
 }
+

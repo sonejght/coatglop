@@ -189,6 +189,7 @@ namespace son8::opengl::types
         constexpr GLenum t() const noexcept
         {
             static_assert(std::is_integral_v< value_type >);
+            static_assert(!std::is_signed_v(value_type >));
             constexpr auto value_size = sizeof(value_type);
             static_assert(1 <= value_size && value_size <= 4);
             if constexpr (value_size == 1) return GL_UNSIGNED_BYTE;

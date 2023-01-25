@@ -36,9 +36,15 @@ namespace son8::opengl
     inline auto DrawArrays(GLsizei count) { glDrawArrays(static_cast< GLenum >(enums::Draw::Default), 0, count); }
     inline auto DrawArrays(enums::Draw mode, GLsizei count) { glDrawArrays(static_cast< GLenum >(mode), 0, count); }
 
+    template< typename T >
+    inline auto DrawElements(types::Elements< T > const &elems) { glDrawElements(elems.draw, elems.count, elems.t(), elems.indices); }
+
 // Compatibility profile functionality
 #ifndef SON8OPENGL_PROFILE_CORE
     // Vertex specification part
+    inline auto EnableClientState(enums::Array array) { glEnableClientState(static_cast< GLenum >(array)); }
+    inline auto DisableClientState(enums::Array array) { glDisableClientState(static_cast< GLenum >(array)); }
+
     inline auto Begin() { glBegin(static_cast< GLenum >(enums::Draw::Default)); }
     inline auto Begin(enums::Draw mode) { glBegin(static_cast< GLenum >(mode)); }
     inline auto End() { glEnd(); }

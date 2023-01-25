@@ -4,6 +4,7 @@
 #include <glad/gl.h>
 #include <array>
 #include <vector>
+#include <type_traits>
 
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
@@ -16,47 +17,6 @@
 # define     SON8OPENGL_PROFILE_CORE
 # define SON8OPENGL_VERSION 0x0403CE
 #  endif       // SON8OPENGL_DEFINED
-
-namespace son8::opengl::types
-{
-    using array2i = std::array< GLint, 2 >;
-    using array2s = std::array< GLshort, 2 >;
-    using array2f = std::array< GLfloat, 2 >;
-    using array2d = std::array< GLdouble, 2 >;
-
-    using array3i = std::array< GLint, 3 >;
-    using array3b = std::array< GLbyte, 3 >;
-    using array3s = std::array< GLshort, 3 >;
-    using array3f = std::array< GLfloat, 3 >;
-    using array3d = std::array< GLdouble, 3 >;
-
-    using array4i = std::array< GLint, 4 >;
-    using array4b = std::array< GLbyte, 4 >;
-    using array4s = std::array< GLshort, 4 >;
-    using array4f = std::array< GLfloat, 4 >;
-    using array4d = std::array< GLdouble, 4 >;
-
-    using array3ui = std::array< GLuint, 3 >;
-    using array3ub = std::array< GLubyte, 3 >;
-    using array3us = std::array< GLushort, 3 >;
-
-    using array4ui = std::array< GLuint, 4 >;
-    using array4ub = std::array< GLubyte, 4 >;
-    using array4us = std::array< GLushort, 4 >;
-
-    using array16f = std::array< GLfloat, 16 >;
-    using array16d = std::array< GLdouble, 16 >;
-
-    struct List
-    {
-        GLuint list;
-        List() noexcept { }
-        List(GLuint u) noexcept : list(u) {  }
-        operator GLuint() const noexcept { return list; }
-    };
-
-    using vectorList = std::vector< List >;
-}
 
 namespace son8::opengl::enums
 {
@@ -133,6 +93,11 @@ namespace son8::opengl::enums
         Array = GL_ARRAY_BUFFER,
         Element = GL_ELEMENT_ARRAY_BUFFER,
     };
+
+    enum class Usage : GLenum
+    {
+        StaticDraw = GL_STATIC_DRAW,
+    };
 #endif
 
 #ifdef SON8OPENGL_VERSION_2_1
@@ -169,6 +134,68 @@ namespace son8::opengl::enums
         Execute = GL_COMPILE_AND_EXECUTE,
     };
 #endif
+}
+
+namespace son8::opengl::types
+{
+    using array2i = std::array< GLint, 2 >;
+    using array2s = std::array< GLshort, 2 >;
+    using array2f = std::array< GLfloat, 2 >;
+    using array2d = std::array< GLdouble, 2 >;
+
+    using array3i = std::array< GLint, 3 >;
+    using array3b = std::array< GLbyte, 3 >;
+    using array3s = std::array< GLshort, 3 >;
+    using array3f = std::array< GLfloat, 3 >;
+    using array3d = std::array< GLdouble, 3 >;
+
+    using array4i = std::array< GLint, 4 >;
+    using array4b = std::array< GLbyte, 4 >;
+    using array4s = std::array< GLshort, 4 >;
+    using array4f = std::array< GLfloat, 4 >;
+    using array4d = std::array< GLdouble, 4 >;
+
+    using array3ui = std::array< GLuint, 3 >;
+    using array3ub = std::array< GLubyte, 3 >;
+    using array3us = std::array< GLushort, 3 >;
+
+    using array4ui = std::array< GLuint, 4 >;
+    using array4ub = std::array< GLubyte, 4 >;
+    using array4us = std::array< GLushort, 4 >;
+
+    using array16f = std::array< GLfloat, 16 >;
+    using array16d = std::array< GLdouble, 16 >;
+
+    struct List
+    {
+        GLuint list;
+        List() noexcept { }
+        List(GLuint u) noexcept : list(u) {  }
+        operator GLuint() const noexcept { return list; }
+    };
+
+    using vectorList = std::vector< List >;
+
+    template< typename T >
+    struct Elements
+    {
+        using value_type = typename T::value_type;
+        void *indices;
+        std::size_t count;
+        GLuint index;
+        enums::Draw draw;
+        Elements() = delete;
+        Elements(T const &data, enums::Draw draw) noexcept : indices(data.data()), count(data.size()), draw(draw) {  }
+        constexpr GLenum t() const noexcept
+        {
+            static_assert(std::is_integral_v< value_type >);
+            constexpr auto value_size = sizeof(value_type);
+            static_assert(1 <= value_size && value_size <= 4);
+            if constexpr (value_size == 1) return GL_UNSIGNED_BYTE;
+            if constexpr (value_size == 2) return GL_UNSIGNED_SHORT;
+            return GL_UNSIGNED_INT;
+        }
+    };
 }
 
 #ifdef SON8OPENGL_INCLUDE

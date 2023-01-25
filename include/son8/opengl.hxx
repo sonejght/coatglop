@@ -195,6 +195,10 @@ namespace son8::opengl::types
             if constexpr (value_size == 2) return GL_UNSIGNED_SHORT;
             return GL_UNSIGNED_INT;
         }
+        GLsizei size() const noexcept
+        {
+            return count * sizeof(value_type);
+        }
     };
 }
 

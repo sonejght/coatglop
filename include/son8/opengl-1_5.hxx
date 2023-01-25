@@ -22,5 +22,5 @@ namespace son8::opengl
     template< typename T >
     void BindBuffer(types::Elements< T > const &elems) { glBindBuffer(static_cast< GLenum >(enums::Buffer::Element), elems.index); }
     template< typename T >
-    void BufferData(types::Elements< T > &elems) { glBufferData(GL_ELEMENT_ARRAY_BUFFER, elems.count * sizeof(T::value_type), elems.indices, GL_STATIC_DRAW); }
+    void BufferData(types::Elements< T > &elems) { glBufferData(GL_ELEMENT_ARRAY_BUFFER, elems.size(), elems.indices, GL_STATIC_DRAW); elems.indices = (void *)0; }
 }

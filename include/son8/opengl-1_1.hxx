@@ -101,5 +101,31 @@ namespace son8::opengl
     inline auto Color(GLdouble r, GLdouble g, GLdouble b, GLdouble a) { glColor4d(r, g, b, a); }
     inline auto Color(GLushort r, GLushort g, GLushort b, GLushort a) { glColor4us(r, g, b, a); }
 
+    // Matrix specification part
+    inline auto MatrixMode(enums::Matrix mode) { glMatrixMode(static_cast< GLenum >(mode)); }
+    inline auto LoadIdentity() { glLoadIdentity(); }
+    inline auto Ortho(GLdouble xl, GLdouble xr, GLdouble yb, GLdouble yt, GLdouble zn, GLdouble zf) { glOrtho(xl, xr, yb, yt, zn, zf); }
+    inline auto Frustum(GLdouble xl, GLdouble xr, GLdouble yb, GLdouble yt, GLdouble zn, GLdouble zf) { glFrustum(xl, xr, yb, yt, zn, zf); }
+    inline auto LoadMatrix(types::array16f const &mat) { glLoadMatrixf(mat.data()); }
+    inline auto LoadMatrix(types::array16d const &mat) { glLoadMatrixd(mat.data()); }
+    inline auto Scale(GLfloat x, GLfloat y, GLfloat z) { glScalef(x, y, z); }
+    inline auto Scale(GLdouble x, GLdouble y, GLdouble z) { glScaled(x, y, z); }
+    inline auto Translate(GLfloat x, GLfloat y, GLfloat z) { glTranslatef(x, y, z); }
+    inline auto Translate(GLdouble x, GLdouble y, GLdouble z) { glTranslated(x, y, z); }
+    inline auto Rotate(GLfloat degrees, GLfloat x, GLfloat y, GLfloat z) { glRotatef(degrees, x, y, z); }
+    inline auto Rotate(GLdouble degrees, GLdouble x, GLdouble y, GLdouble z) { glRotated(degrees, x, y, z); }
+    inline auto PushMatrix() { glPushMatrix(); }
+    inline auto PopMatrix() { glPopMatrix(); }
+
+    // List specification part
+    types::vectorList GenLists(GLsizei s);
+    void DeleteLists(types::vectorList &lists);
+    void CallLists(types::vectorList const &lists);
+    inline auto NewList(types::List list) { glNewList(list, static_cast< GLenum >(enums::List::Compile)); }
+    inline auto NewList(types::List list, enums::List mode) { glNewList(list, static_cast< GLenum >(mode)); }
+    inline auto EndList() { glEndList(); }
+    inline auto CallList(types::List list) { glCallList(list); }
+    inline auto IsList(types::List list) { return glIsList(list); }
+
 #endif
 }

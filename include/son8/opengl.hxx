@@ -3,6 +3,7 @@
 
 #include <glad/gl.h>
 #include <array>
+#include <vector>
 
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
@@ -42,6 +43,19 @@ namespace son8::opengl::types
     using array4ui = std::array< GLuint, 4 >;
     using array4ub = std::array< GLubyte, 4 >;
     using array4us = std::array< GLushort, 4 >;
+
+    using array16f = std::array< GLfloat, 16 >;
+    using array16d = std::array< GLdouble, 16 >;
+
+    struct List
+    {
+        GLuint list;
+        List() noexcept { }
+        List(GLuint u) noexcept : list(u) {  }
+        operator GLuint() const noexcept { return list; }
+    };
+
+    using vectorList = std::vector< List >;
 }
 
 namespace son8::opengl::enums

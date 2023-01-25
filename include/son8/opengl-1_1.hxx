@@ -37,7 +37,7 @@ namespace son8::opengl
     inline auto DrawArrays(enums::Draw mode, GLsizei count) { glDrawArrays(static_cast< GLenum >(mode), 0, count); }
 
     template< typename T >
-    inline auto DrawElements(types::Elements< T > const &elems) { glDrawElements(elems.draw, elems.count, elems.t(), elems.indices); }
+    inline auto DrawElements(types::Elements< T > const &elems) { glDrawElements(static_cast< GLenum >(elems.draw), elems.count, elems.t(), elems.indices); }
 
 // Compatibility profile functionality
 #ifndef SON8OPENGL_PROFILE_CORE

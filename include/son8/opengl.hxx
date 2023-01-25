@@ -185,7 +185,7 @@ namespace son8::opengl::types
         GLuint index;
         enums::Draw draw;
         Elements() = delete;
-        Elements(T const &data, enums::Draw draw) noexcept : indices(data.data()), count(data.size()), draw(draw) {  }
+        Elements(T &data, enums::Draw draw) noexcept : indices(data.data()), count(data.size()), draw(draw) {  }
         constexpr GLenum t() const noexcept
         {
             static_assert(std::is_integral_v< value_type >);

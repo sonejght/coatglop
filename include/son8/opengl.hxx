@@ -202,7 +202,7 @@ namespace son8::opengl::types
             return count * sizeof(value_type);
         }
     };
-
+#ifdef SON8OPENGL_VERSION_2_1
     struct Shader
     {
         GLuint index;
@@ -212,6 +212,7 @@ namespace son8::opengl::types
         operator GLuint() const noexcept { assert(index != 0); return index; }
         operator enums::Shader() const noexcept { return type; }
     };
+#endif
 }
 
 #ifdef SON8OPENGL_INCLUDE

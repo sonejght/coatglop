@@ -2,6 +2,7 @@
 #include <son8/opengl-4_3-comp.hxx>
 #include <cassert>
 #include <algorithm>
+#include <numeric>
 
 namespace son8::opengl
 {
@@ -17,9 +18,8 @@ namespace son8::opengl
         assert(s > 0);
         auto gen = glGenLists(s);
         assert(gen != 0);
-        types::vectorList lists;
-        lists.resize(s);
-        std::generate(lists.begin(), lists.end(), [&gen](){ return gen++; });
+        types::vectorList lists(s);
+        std::iota(lists.begin(), lists.end(), gen);
 
         return lists;
     }

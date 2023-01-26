@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include <type_traits>
+#include <cassert>
 
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
@@ -200,6 +201,16 @@ namespace son8::opengl::types
         {
             return count * sizeof(value_type);
         }
+    };
+
+    struct Shader
+    {
+        GLuint index;
+        enums::Shader type;
+        Shader() = delete;
+        Shader(enums::Shader type, GLuint index = 0) noexcept : index(index) { }
+        operator GLuint() const noexcept { assert(index != 0); return index; }
+        operator enums::Shader() const noexcept { return type; }
     };
 }
 

@@ -16,5 +16,12 @@
 
 namespace son8::opengl
 {
+    // Vertex speicfication part
 
+
+    // Shader specification part
+    inline auto CreateShader(enums::Shader type) { return types::Shader(type, glCreateShader(static_cast< GLenum >(type))); }
+    inline auto DeleteShader(types::Shader shader) { glDeleteShader(shader); }
+    inline auto ShaderSource(types::Shader shader, char const *cstr) { glShaderSource(shader, 1, &cstr, nullptr); }
+    inline auto CompileShader(types::Shader shader) { glCompileShader(shader); }
 }

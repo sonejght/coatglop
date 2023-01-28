@@ -34,4 +34,21 @@ namespace son8::opengl
     {
         std::for_each(lists.cbegin(), lists.cend(), [](auto list){ CallList(list); });
     }
+
+    GLint GetAttribLocation(types::Program &program, GLchar const *name) {
+        GLint loc = glGetAttribLocation(program, name);
+        assert(loc != -1);
+        program.attributes.insert(loc);
+        return loc;
+    }
+
+    void EnableVertexAttribArray(types::Program &program)
+    {
+        for (auto const attr : program.attributes) glEnableVertexAttribArray(attr);
+    }
+
+    void DisableVertexAttribArray(types::Program &program)
+    {
+        for (auto const attr : program.attributes) glDisableVertexAttribArray(attr);
+    }
 }

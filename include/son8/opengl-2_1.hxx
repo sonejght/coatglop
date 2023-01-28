@@ -24,4 +24,14 @@ namespace son8::opengl
     inline auto DeleteShader(types::Shader shader) { glDeleteShader(shader); }
     inline auto ShaderSource(types::Shader shader, char const *cstr) { glShaderSource(shader, 1, &cstr, nullptr); }
     inline auto CompileShader(types::Shader shader) { glCompileShader(shader); }
+
+    inline auto CreateProgram() { return types::Program(glCreateProgram()); }
+    inline auto DeleteProgram(types::Program &program) { glDeleteProgram(program); program.id = 0; }
+    inline auto AttachShader(types::Program &program, types::Shader shader) { glAttachShader(program, shader); }
+    inline auto LinkProgram(types::Program const &program) { glLinkProgram(program); }
+    inline auto UseProgram() { glUseProgram(0); }
+    inline auto UseProgram(types::Program const &program) { glUseProgram(program); }
+    GLint GetAttribLocation(types::Program &program, GLchar const *name);
+    void EnableVertexAttribArray(types::Program &program);
+    void DisableVertexAttribArray(types::Program &program);
 }

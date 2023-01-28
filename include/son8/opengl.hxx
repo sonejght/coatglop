@@ -4,6 +4,7 @@
 #include <glad/gl.h>
 #include <array>
 #include <vector>
+#include <set>
 #include <type_traits>
 #include <cassert>
 
@@ -211,6 +212,15 @@ namespace son8::opengl::types
         Shader(enums::Shader type, GLuint index = 0) noexcept : index(index) { }
         operator GLuint() const noexcept { assert(index != 0); return index; }
         operator enums::Shader() const noexcept { return type; }
+    };
+
+    struct Program
+    {
+        GLuint id;
+        std::set< GLint > attributes;
+        Program() = delete;
+        Program(GLuint id) noexcept : id(id) { }
+        operator GLuint() const noexcept { assert(id != 0); return id; }
     };
 #endif
 }

@@ -7,6 +7,7 @@
 #include <set>
 #include <type_traits>
 #include <cassert>
+#include <algorithm>
 
 # ifndef          SON8OPENGL_DEFINED
 # define          SON8OPENGL_DEFINED
@@ -140,6 +141,13 @@ namespace son8::opengl::enums
 
 namespace son8::opengl::types
 {
+    template< class T >
+    struct remove_cvref {
+        using type = std::remove_cv_t< std::remove_reference_t< T > >;
+    };
+    template< class T >
+    using remove_cvref_t = typename remove_cvref< T >::type;
+
     using array2i = std::array< GLint, 2 >;
     using array2s = std::array< GLshort, 2 >;
     using array2f = std::array< GLfloat, 2 >;
@@ -167,6 +175,24 @@ namespace son8::opengl::types
 
     using array16f = std::array< GLfloat, 16 >;
     using array16d = std::array< GLdouble, 16 >;
+
+    template< typename T >
+    constexpr auto to_array16(T *t)
+    {
+        constexpr auto sz = sizeof(t[0]);
+        static_assert(4 <= sz && sz <= 8);
+        static_assert(std::is_floating_point_v< remove_cvref_t< decltype(t[0]) > >);
+        if constexpr (sz == 4) {
+            array16f a;
+            std::copy_n(t, a.size(), a.begin());
+            return a;
+        }
+        if constexpr (sz == 8) {
+            array16d a;
+            std::copy_n(t, a.size(), a.begin());
+            return a;
+        }
+    }
 
     struct List
     {
